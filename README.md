@@ -22,9 +22,12 @@ cd ~/catkin_ws/src
 git clone TODO
 cd ..
 catkin_make
+source devel/setup.bash
 ```
 
-The `catkin_make` will build the package for you.
+The `catkin_make` will build the package for you and the
+`source devel/setup.bash` command ensures ROS commands detect newly installed
+packages.
 
 Note: we assume your ROS workspace is named `catkin_ws` and is located in the
 `home` directory.

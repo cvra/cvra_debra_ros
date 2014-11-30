@@ -7,9 +7,10 @@ ROS package containing description files of Debra
 Usage
 -----
 
-To view the robot model in rviz, run:
+To view the robot model in rviz, run one of the following:
 ```sh
-roslaunch urdf_tutorial display.launch model:=debra_description/urdf/debra.urdf
+roslaunch debra_description debra_display.launch
+roslaunch debra_description debra_rviz.launch
 ```
 
 Dependencies
