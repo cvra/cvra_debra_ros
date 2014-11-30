@@ -21,7 +21,7 @@ Run the following commands in a terminal:
 ```sh
 bash
 cd ~/catkin_ws/src
-git clone TODO
+git clone https://github.com/cvra/cvra_debra_ros.git
 cd ..
 catkin_make
 source devel/setup.bash
