@@ -2,7 +2,7 @@ cvra_debra_ros
 ==============
 
 This is a ROS metapackage holding several ROS packages related to the Debra
-created and used by CVRA.
+robot created and used by CVRA.
 
 
 Usage
@@ -33,7 +33,5 @@ Note: we assume your ROS workspace is named `catkin_ws` and is located in the
 Packages
 --------
 
-Here is a list of the packages contained in this metapackage:
+Here is a list of the packages contained in this repository:
 * **debra_description** which provides description files ot model Debra
-
-
