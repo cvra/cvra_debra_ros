@@ -1,7 +1,11 @@
 #! /usr/bin/env python
 import rospy, math
 import numpy as np
-import sys, termios, tty, select, os
+import sys
+import termios
+import tty
+import select
+import os
 from geometry_msgs.msg import Twist
 
 class KeyTeleop(object):
