@@ -8,7 +8,6 @@ Usage
 -----
 
 It is assumed you have installed ROS and configured your ROS workspace.
-
 Otherwise, please refer to the [ROS installation tutorial]
 (http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment),
 it is recommended to do a full install of ROS if you have enough disk space.
@@ -38,4 +37,15 @@ Packages
 --------
 
 Here is a list of the packages contained in this repository:
+* **debra_control**: which handles the joint controllers
 * **debra_description**: which provides description files ot model Debra
+* **debra_gazebo**: which handles gazebo interactions with ROS & Debra
+
+
+To do
+-----
+
+* Fix the `catkin_make` compilation problem with **debra_control**. Note: this
+doesn't affect the operation of the package.
+* Fix the operation problems of running roscore in parallel with the packages
+of this metapackage.

@@ -48,9 +48,7 @@ This package uses the following ROS packages:
 
 If you don't have these packages installed, install them using:
 ```sh
-rosdep install robot_state_publisher
-rosdep install urdf
-rosdep install xacro
+rosdep install robot_state_publisher urdf xacro
 ```
 
 To do
