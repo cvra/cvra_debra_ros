@@ -58,9 +58,7 @@ class KeyTeleop(object):
 
   def print_usage(self):
     msg = """
-    Keyboard Teleop that Publish to /cmd_vel (geometry_msgs/Twist)
-    Copyright (C) 2013
-    Released under BSD License
+    Keyboard Teleop that publishes to /cmd_vel (geometry_msgs/Twist)
     --------------------------------------------------
     H:       Print this menu
     Moving around:

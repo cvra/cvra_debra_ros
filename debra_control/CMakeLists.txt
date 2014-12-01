@@ -8,8 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   controller_manager
   geometry_msgs
   joy
-  ros_control
-  ros_controllers
+#  ros_control
+#  ros_controllers
   sensor_msgs
   std_msgs
 )
