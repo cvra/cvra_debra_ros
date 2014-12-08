@@ -12,6 +12,10 @@
     <color rgba="0.0 0.8 0.0 1.0"/>
   </material>
 
+  <material name="LightLightGrey">
+    <color rgba="0.9 0.9 0.9 1.0"/>
+  </material>
+
   <material name="LightGrey">
     <color rgba="0.7 0.7 0.7 1.0"/>
   </material>
@@ -22,6 +26,18 @@
 
   <material name="DarkGrey">
     <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <material name="DarkDarkGrey">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+
+  <material name="Orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+
+  <material name="Brown">
+    <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
   </material>
 
   <material name="Red">

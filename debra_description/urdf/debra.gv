@@ -4,11 +4,17 @@ node [shape=box];
 "base_link" [label="base_link"];
 "base_link_left_wheel" [label="base_link_left_wheel"];
 "base_link_right_wheel" [label="base_link_right_wheel"];
+"left_arm_support" [label="left_arm_support"];
+"right_arm_support" [label="right_arm_support"];
 node [shape=ellipse, color=blue, fontcolor=blue];
-"base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.3 \nrpy: 0 -0 0"]
+"base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.04 \nrpy: 0 -0 0"]
 "base_footprint_joint" -> "base_link"
-"base_link" -> "base_link_left_wheel_joint" [label="xyz: 0 0.3 -0.1 \nrpy: 0 -0 0"]
+"base_link" -> "base_link_left_wheel_joint" [label="xyz: 0 0.1 -0.01 \nrpy: 0 -0 0"]
 "base_link_left_wheel_joint" -> "base_link_left_wheel"
-"base_link" -> "base_link_right_wheel_joint" [label="xyz: 0 -0.3 -0.1 \nrpy: 0 -0 0"]
+"base_link" -> "base_link_right_wheel_joint" [label="xyz: 0 -0.1 -0.01 \nrpy: 0 -0 0"]
 "base_link_right_wheel_joint" -> "base_link_right_wheel"
+"base_link" -> "left_arm_support_joint" [label="xyz: 0 0.1 0.1 \nrpy: 0 -0 0"]
+"left_arm_support_joint" -> "left_arm_support"
+"base_link" -> "right_arm_support_joint" [label="xyz: 0 -0.1 0.1 \nrpy: 0 -0 0"]
+"right_arm_support_joint" -> "right_arm_support"
 }
