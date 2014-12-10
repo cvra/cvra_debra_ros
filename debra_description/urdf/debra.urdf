@@ -214,7 +214,7 @@
   <gazebo reference="right_arm_support">
     <mu1 value="0.2"/>
     <mu2 value="0.2"/>
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Grey</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="right_arm_support_joint" type="fixed">
@@ -246,7 +246,7 @@
   <gazebo reference="left_arm_support">
     <mu1 value="0.2"/>
     <mu2 value="0.2"/>
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Grey</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="left_arm_support_joint" type="fixed">
@@ -254,6 +254,70 @@
     <child link="left_arm_support"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
     <origin rpy="0 0 0" xyz="0.0                    0.1                    0.15"/>
+  </joint>
+  <link name="right_arm_slider">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.41666666667e-06" ixy="0" ixz="0" iyy="2.41666666667e-06" iyz="0" izz="2.41666666667e-06"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_arm_slider">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_arm_slider_joint" type="fixed">
+    <parent link="right_arm_support"/>
+    <child link="right_arm_slider"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <origin rpy="0 0 0" xyz="0.0                    -0.05                    0.0"/>
+  </joint>
+  <link name="left_arm_slider">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.41666666667e-06" ixy="0" ixz="0" iyy="2.41666666667e-06" iyz="0" izz="2.41666666667e-06"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_arm_slider">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_arm_slider_joint" type="fixed">
+    <parent link="left_arm_support"/>
+    <child link="left_arm_slider"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <origin rpy="0 0 0" xyz="0.0                    0.05                    0.0"/>
   </joint>
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">

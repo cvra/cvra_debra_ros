@@ -43,7 +43,7 @@
     <gazebo reference="${lr}_arm_support">
       <mu1 value="0.2"/>
       <mu2 value="0.2"/>
-      <material>Gazebo/Blue</material>
+      <material>Gazebo/Grey</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
