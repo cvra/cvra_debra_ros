@@ -12,14 +12,6 @@
   <!-- BASE-FOOTPRINT -->
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
   <link name="base_footprint">
-    <inertial>
-      <mass value="0.0001" />
-      <origin xyz="0 0 0"
-              rpy="0 0 0"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0"
-               izz="0.0001" />
-    </inertial>
     <visual>
         <origin xyz="0 0 0"
                 rpy="0 0 0" />
@@ -114,6 +106,7 @@
               translateY="1"
               flipY="0" />
 
+  <!-- Base controller -->
   <gazebo>
     <plugin name="differential_drive_controller"
             filename="libgazebo_ros_diff_drive.so">
@@ -133,12 +126,20 @@
             filename="libgazebo_ros_control.so" />
   </gazebo>
 
-    <!-- Hokuyo laser -->
+  <!-- Arm controller -->
+  <gazebo>
+    <plugin name="gazebo_ros_control"
+            filename="libgazebo_ros_control.so">
+      <robotNamespace>/debra</robotNamespace>
+    </plugin>
+  </gazebo>
+
+    <!-- Hokuyo laser controller -->
   <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>40</update_rate>
+      <update_rate>50</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -164,7 +165,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-        <topicName>/rrbot/laser/scan</topicName>
+        <topicName>/debra/laser/scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>

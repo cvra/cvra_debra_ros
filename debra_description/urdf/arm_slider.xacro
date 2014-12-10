@@ -5,7 +5,6 @@
   <xacro:include
     filename="$(find debra_description)/urdf/common_properties.xacro" />
 
-  <!-- Wheels -->
   <xacro:macro name="arm_slider"
                params="lr parent translateX translateY flipY">
   <!--lr: left, right -->
@@ -47,25 +46,29 @@
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <joint name="${lr}_arm_slider_joint"
+    <joint name="${parent}_${lr}_arm_slider_joint"
            type="prismatic">
       <parent link="${parent}"/>
       <child link="${lr}_arm_slider"/>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <axis xyz="0 0 1"
+            rpy="0 0 0" />
       <limit effort="1000.0"
-             lower="-0.38"
-             upper="0"
+             lower="${arm_slider_limit_lower}"
+             upper="${arm_slider_limit_upper}"
              velocity="0.5" />
-      <origin xyz="${translateX * arm_slider_x_origin_to_wheel_origin}
-                   ${translateY * arm_slider_y_origin_to_wheel_origin}
-                   ${arm_slider_z_origin_to_wheel_origin}"
+      <origin xyz="${translateX * arm_slider_x_origin_to_base_origin}
+                   ${translateY * arm_slider_y_origin_to_base_origin}
+                   ${arm_slider_z_origin_to_base_origin}"
               rpy="0 0 0" />
     </joint>
 
     <!-- Transmission is important to link the joints and the controller -->
     <transmission name="${parent}_${lr}_arm_slider_joint_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${parent}_${lr}_arm_slider_joint" />
+      <joint name="${parent}_${lr}_arm_slider_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
       <actuator name="${parent}_${lr}_arm_slider_joint_motor">
         <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
