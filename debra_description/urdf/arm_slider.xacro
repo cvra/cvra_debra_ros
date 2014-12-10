@@ -48,15 +48,29 @@
     </gazebo>
 
     <joint name="${lr}_arm_slider_joint"
-           type="fixed">
+           type="prismatic">
       <parent link="${parent}"/>
       <child link="${lr}_arm_slider"/>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <limit effort="1000.0"
+             lower="-0.38"
+             upper="0"
+             velocity="0.5" />
       <origin xyz="${translateX * arm_slider_x_origin_to_wheel_origin}
                    ${translateY * arm_slider_y_origin_to_wheel_origin}
                    ${arm_slider_z_origin_to_wheel_origin}"
               rpy="0 0 0" />
     </joint>
+
+    <!-- Transmission is important to link the joints and the controller -->
+    <transmission name="${parent}_${lr}_arm_slider_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${parent}_${lr}_arm_slider_joint" />
+      <actuator name="${parent}_${lr}_arm_slider_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
   </xacro:macro>
 </robot>

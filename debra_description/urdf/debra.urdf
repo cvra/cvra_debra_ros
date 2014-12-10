@@ -281,12 +281,21 @@
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-  <joint name="right_arm_slider_joint" type="fixed">
+  <joint name="right_arm_slider_joint" type="prismatic">
     <parent link="right_arm_support"/>
     <child link="right_arm_slider"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
     <origin rpy="0 0 0" xyz="0.0                    -0.05                    0.0"/>
   </joint>
+  <transmission name="right_arm_support_right_arm_slider_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_arm_support_right_arm_slider_joint"/>
+    <actuator name="right_arm_support_right_arm_slider_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <link name="left_arm_slider">
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
@@ -313,12 +322,21 @@
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-  <joint name="left_arm_slider_joint" type="fixed">
+  <joint name="left_arm_slider_joint" type="prismatic">
     <parent link="left_arm_support"/>
     <child link="left_arm_slider"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
     <origin rpy="0 0 0" xyz="0.0                    0.05                    0.0"/>
   </joint>
+  <transmission name="left_arm_support_left_arm_slider_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_arm_support_left_arm_slider_joint"/>
+    <actuator name="left_arm_support_left_arm_slider_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
       <alwaysOn>true</alwaysOn>
