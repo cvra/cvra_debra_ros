@@ -67,10 +67,10 @@
   <!--Actual body/chassis of the robot-->
   <link name="base_link">
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.5"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <!--The 3x3 rotational inertia matrix. -->
-      <inertia ixx="0.00108333333333" ixy="0" ixz="0" iyy="0.00108333333333" iyz="0" izz="0.00108333333333"/>
+      <inertia ixx="0.00270833333333" ixy="0" ixz="0" iyy="0.00270833333333" iyz="0" izz="0.00270833333333"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -92,6 +92,39 @@
     <material>Gazebo/White</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!-- BODY -->
+  <link name="body">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.08                      0.15                      0.3"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.25                      0.25                      0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.001875" ixy="0" ixz="0" iyy="0.00160666666667" iyz="0" izz="0.00160666666667"/>
+    </inertial>
+  </link>
+  <gazebo reference="body">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Grey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <origin rpy="0 0 0" xyz="0.0                    0.0                    0.175"/>
+  </joint>
   <!-- WHEELs -->
   <link name="base_link_right_wheel">
     <visual>
@@ -190,70 +223,6 @@
     </actuator>
   </transmission>
   <!-- ARMS -->
-  <link name="right_arm_support">
-    <visual>
-      <origin rpy="0.0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size="0.05                      0.05                      0.25"/>
-      </geometry>
-      <material name="Grey"/>
-    </visual>
-    <collision>
-      <origin rpy="0.0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size="0.05                      0.05                      0.25"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.1"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.000541666666667" ixy="0" ixz="0" iyy="0.000541666666667" iyz="0" izz="0.000541666666667"/>
-    </inertial>
-  </link>
-  <gazebo reference="right_arm_support">
-    <mu1 value="0.2"/>
-    <mu2 value="0.2"/>
-    <material>Gazebo/Grey</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <joint name="right_arm_support_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="right_arm_support"/>
-    <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="0.0                    -0.1                    0.15"/>
-  </joint>
-  <link name="left_arm_support">
-    <visual>
-      <origin rpy="0.0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size="0.05                      0.05                      0.25"/>
-      </geometry>
-      <material name="Grey"/>
-    </visual>
-    <collision>
-      <origin rpy="0.0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size="0.05                      0.05                      0.25"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.1"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.000541666666667" ixy="0" ixz="0" iyy="0.000541666666667" iyz="0" izz="0.000541666666667"/>
-    </inertial>
-  </link>
-  <gazebo reference="left_arm_support">
-    <mu1 value="0.2"/>
-    <mu2 value="0.2"/>
-    <material>Gazebo/Grey</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <joint name="left_arm_support_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="left_arm_support"/>
-    <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="0.0                    0.1                    0.15"/>
-  </joint>
   <link name="right_arm_slider">
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
@@ -280,20 +249,20 @@
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-  <joint name="right_arm_support_right_arm_slider_joint" type="prismatic">
-    <parent link="right_arm_support"/>
+  <joint name="body_right_arm_slider_joint" type="prismatic">
+    <parent link="body"/>
     <child link="right_arm_slider"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
     <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0" upper="0.3" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0.0                    -0.05                    0.115"/>
+    <limit effort="1000.0" lower="-0.25" upper="0.0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.1                    0.14"/>
   </joint>
-  <transmission name="right_arm_support_right_arm_slider_joint_trans">
+  <transmission name="body_right_arm_slider_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_arm_support_right_arm_slider_joint">
+    <joint name="body_right_arm_slider_joint">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_arm_support_right_arm_slider_joint_motor">
+    <actuator name="body_right_arm_slider_joint_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
@@ -324,20 +293,20 @@
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
-  <joint name="left_arm_support_left_arm_slider_joint" type="prismatic">
-    <parent link="left_arm_support"/>
+  <joint name="body_left_arm_slider_joint" type="prismatic">
+    <parent link="body"/>
     <child link="left_arm_slider"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
     <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0" upper="0.3" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0.0                    0.05                    0.115"/>
+    <limit effort="1000.0" lower="-0.25" upper="0.0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.1                    0.14"/>
   </joint>
-  <transmission name="left_arm_support_left_arm_slider_joint_trans">
+  <transmission name="body_left_arm_slider_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_arm_support_left_arm_slider_joint">
+    <joint name="body_left_arm_slider_joint">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="left_arm_support_left_arm_slider_joint_motor">
+    <actuator name="body_left_arm_slider_joint_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>

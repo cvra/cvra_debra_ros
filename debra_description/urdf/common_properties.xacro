@@ -26,7 +26,19 @@
   <xacro:property name="base_x_size" value="0.25" />
   <xacro:property name="base_y_size" value="0.25" />
   <xacro:property name="base_z_size" value="0.05" />
-  <xacro:property name="base_mass" value="0.2" /> <!-- in kg-->
+  <xacro:property name="base_mass" value="0.5" /> <!-- in kg-->
+
+  <!-- Body -->
+  <xacro:property name="body_x_size" value="0.08" />
+  <xacro:property name="body_y_size"
+                  value="${base_y_size - 2 * arm_slider_y_size}" />
+  <xacro:property name="body_z_size" value="0.30" />
+  <xacro:property name="body_mass" value="0.2" />
+
+  <xacro:property name="body_x_origin_to_base_origin" value="0.0" />
+  <xacro:property name="body_y_origin_to_base_origin" value="0.0" />
+  <xacro:property name="body_z_origin_to_base_origin"
+                  value="${(body_z_size + base_z_size) / 2}" />
 
   <!-- Wheels -->
   <xacro:property name="wheel_radius" value="0.03" />
@@ -39,31 +51,21 @@
   <xacro:property name="wheel_separation"
                   value="${base_y_origin_to_wheel_origin * 2}" />
 
-  <!-- Arm supports -->
-  <xacro:property name="arm_support_x_size" value="0.05" />
-  <xacro:property name="arm_support_y_size" value="0.05" />
-  <xacro:property name="arm_support_z_size" value="0.25" />
-  <xacro:property name="arm_support_mass" value="0.1" />
-
-  <xacro:property name="arm_support_x_origin_to_base_origin" value="0.0" />
-  <xacro:property name="arm_support_y_origin_to_base_origin" value="0.1" />
-  <xacro:property name="arm_support_z_origin_to_base_origin"
-                  value="${0.125 + base_z_size / 2}" />
-
   <!-- Arm sliders -->
-  <xacro:property name="arm_slider_x_size" value="${arm_support_x_size}" />
-  <xacro:property name="arm_slider_y_size" value="${arm_support_y_size}" />
+  <xacro:property name="arm_slider_x_size" value="0.05" />
+  <xacro:property name="arm_slider_y_size" value="0.05" />
   <xacro:property name="arm_slider_z_size" value="0.02" />
   <xacro:property name="arm_slider_mass" value="0.01" />
 
   <xacro:property name="arm_slider_x_origin_to_base_origin" value="0.0" />
   <xacro:property name="arm_slider_y_origin_to_base_origin"
-                  value="${(arm_support_y_size + arm_slider_y_size) / 2}" />
+                  value="${(body_y_size + arm_slider_y_size) / 2}" />
   <xacro:property name="arm_slider_z_origin_to_base_origin"
-                  value="${(arm_support_z_size - arm_slider_z_size) / 2}" />
+                  value="${(body_z_size - arm_slider_z_size) / 2}" />
 
-  <xacro:property name="arm_slider_limit_upper" value="0.3" />
-  <xacro:property name="arm_slider_limit_lower" value="0" />
+  <xacro:property name="arm_slider_limit_upper" value="0.0" />
+  <xacro:property name="arm_slider_limit_lower"
+                  value="${- body_z_size + arm_slider_z_size + arm_arm_z_size}" />
 
   <!-- Arm arms -->
   <xacro:property name="arm_arm_x_size" value="0.04" />
