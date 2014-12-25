@@ -346,20 +346,20 @@
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.04                      0.15                      0.03"/>
+        <box size="0.04                      0.2                      0.03"/>
       </geometry>
       <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.04                      0.15                      0.03"/>
+        <box size="0.04                      0.2                      0.03"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
     </inertial>
   </link>
   <gazebo reference="right_arm_arm">
@@ -374,7 +374,7 @@
     <hardwareInterface>EffortJointInterface</hardwareInterface>
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0.0                    -0.065                    -0.025"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.085                    -0.025"/>
   </joint>
   <transmission name="right_arm_slider_right_arm_arm_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -390,20 +390,20 @@
     <visual>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.04                      0.15                      0.03"/>
+        <box size="0.04                      0.2                      0.03"/>
       </geometry>
       <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.04                      0.15                      0.03"/>
+        <box size="0.04                      0.2                      0.03"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.000195" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
     </inertial>
   </link>
   <gazebo reference="left_arm_arm">
@@ -418,7 +418,7 @@
     <hardwareInterface>EffortJointInterface</hardwareInterface>
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
-    <origin rpy="0 0 0" xyz="0.0                    0.065                    -0.025"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.085                    -0.025"/>
   </joint>
   <transmission name="left_arm_slider_left_arm_arm_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -426,6 +426,94 @@
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_arm_slider_left_arm_arm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="right_arm_forearm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_arm_forearm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_arm_arm_right_arm_forearm_joint" type="revolute">
+    <parent link="right_arm_arm"/>
+    <child link="right_arm_forearm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.16                    -0.03"/>
+  </joint>
+  <transmission name="right_arm_arm_right_arm_forearm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_arm_arm_right_arm_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_arm_arm_right_arm_forearm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="left_arm_forearm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_arm_forearm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_arm_arm_left_arm_forearm_joint" type="revolute">
+    <parent link="left_arm_arm"/>
+    <child link="left_arm_forearm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.16                    -0.03"/>
+  </joint>
+  <transmission name="left_arm_arm_left_arm_forearm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_arm_arm_left_arm_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_arm_arm_left_arm_forearm_joint_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>

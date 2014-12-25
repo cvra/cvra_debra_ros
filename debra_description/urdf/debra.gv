@@ -7,9 +7,11 @@ node [shape=box];
 "left_arm_support" [label="left_arm_support"];
 "left_arm_slider" [label="left_arm_slider"];
 "left_arm_arm" [label="left_arm_arm"];
+"left_arm_forearm" [label="left_arm_forearm"];
 "right_arm_support" [label="right_arm_support"];
 "right_arm_slider" [label="right_arm_slider"];
 "right_arm_arm" [label="right_arm_arm"];
+"right_arm_forearm" [label="right_arm_forearm"];
 node [shape=ellipse, color=blue, fontcolor=blue];
 "base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.04 \nrpy: 0 -0 0"]
 "base_footprint_joint" -> "base_link"
@@ -21,12 +23,16 @@ node [shape=ellipse, color=blue, fontcolor=blue];
 "left_arm_support_joint" -> "left_arm_support"
 "left_arm_support" -> "left_arm_support_left_arm_slider_joint" [label="xyz: 0 0.05 0.115 \nrpy: 0 -0 0"]
 "left_arm_support_left_arm_slider_joint" -> "left_arm_slider"
-"left_arm_slider" -> "left_arm_slider_left_arm_arm_joint" [label="xyz: 0 0.065 -0.025 \nrpy: 0 -0 0"]
+"left_arm_slider" -> "left_arm_slider_left_arm_arm_joint" [label="xyz: 0 0.085 -0.025 \nrpy: 0 -0 0"]
 "left_arm_slider_left_arm_arm_joint" -> "left_arm_arm"
+"left_arm_arm" -> "left_arm_arm_left_arm_forearm_joint" [label="xyz: 0 0.16 -0.03 \nrpy: 0 -0 0"]
+"left_arm_arm_left_arm_forearm_joint" -> "left_arm_forearm"
 "base_link" -> "right_arm_support_joint" [label="xyz: 0 -0.1 0.15 \nrpy: 0 -0 0"]
 "right_arm_support_joint" -> "right_arm_support"
 "right_arm_support" -> "right_arm_support_right_arm_slider_joint" [label="xyz: 0 -0.05 0.115 \nrpy: 0 -0 0"]
 "right_arm_support_right_arm_slider_joint" -> "right_arm_slider"
-"right_arm_slider" -> "right_arm_slider_right_arm_arm_joint" [label="xyz: 0 -0.065 -0.025 \nrpy: 0 -0 0"]
+"right_arm_slider" -> "right_arm_slider_right_arm_arm_joint" [label="xyz: 0 -0.085 -0.025 \nrpy: 0 -0 0"]
 "right_arm_slider_right_arm_arm_joint" -> "right_arm_arm"
+"right_arm_arm" -> "right_arm_arm_right_arm_forearm_joint" [label="xyz: 0 -0.16 -0.03 \nrpy: 0 -0 0"]
+"right_arm_arm_right_arm_forearm_joint" -> "right_arm_forearm"
 }

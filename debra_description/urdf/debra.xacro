@@ -8,6 +8,7 @@
   <xacro:include filename="$(find debra_description)/urdf/arm_support.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/arm_slider.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/arm_arm.xacro" />
+  <xacro:include filename="$(find debra_description)/urdf/arm_forearm.xacro" />
 
   <!-- BASE-FOOTPRINT -->
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
@@ -108,14 +109,25 @@
 
   <arm_arm lr="right"
            parent="right_arm_slider"
-           translateX="1"
+           translateX="0"
            translateY="-1"
            flipY="0" />
   <arm_arm lr="left"
            parent="left_arm_slider"
-           translateX="1"
+           translateX="0"
            translateY="1"
            flipY="0" />
+
+  <arm_forearm lr="right"
+               parent="right_arm_arm"
+               translateX="0"
+               translateY="-1"
+               flipY="0" />
+  <arm_forearm lr="left"
+               parent="left_arm_arm"
+               translateX="0"
+               translateY="1"
+               flipY="0" />
 
   <!-- Base controller -->
   <gazebo>
