@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="body" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include
+    filename="$(find debra_description)/urdf/common_properties.xacro" />
+
+  <xacro:macro name="body"
+               params="parent translateX translateY flipY">
+  <!--lr: left, right -->
+    <link name="body">
+      <visual>
+        <origin xyz="0 0 0"
+                rpy="${flipY * M_PI / 2} 0 0" />
+        <geometry>
+          <box size="${body_x_size}
+                     ${body_y_size}
+                     ${body_z_size}" />
+        </geometry>
+        <material name="Grey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0"
+                rpy="${flipY * M_PI / 2} 0 0" />
+        <geometry>
+          <box size="${base_x_size}
+                     ${base_y_size}
+                     ${base_z_size}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="${body_mass}" />
+        <origin xyz="0 0 0"
+                rpy="0 0 0" />
+        <box_inertia m="${body_mass}"
+                     x="${body_x_size}"
+                     y="${body_y_size}"
+                     z="${body_z_size}"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="body">
+      <mu1 value="0.2"/>
+      <mu2 value="0.2"/>
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <joint name="body_joint"
+           type="fixed">
+      <parent link="${parent}"/>
+      <child link="body"/>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <origin xyz="${translateX * body_x_origin_to_base_origin}
+                   ${translateY * body_y_origin_to_base_origin}
+                   ${body_z_origin_to_base_origin}"
+              rpy="0 0 0" />
+    </joint>
+
+  </xacro:macro>
+</robot>

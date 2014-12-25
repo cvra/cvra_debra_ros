@@ -14,6 +14,9 @@
   <material name="Green">
     <color rgba="0.0 0.8 0.0 1.0"/>
   </material>
+  <material name="LightLightGrey">
+    <color rgba="0.9 0.9 0.9 1.0"/>
+  </material>
   <material name="LightGrey">
     <color rgba="0.7 0.7 0.7 1.0"/>
   </material>
@@ -22,6 +25,15 @@
   </material>
   <material name="DarkGrey">
     <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="DarkDarkGrey">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  <material name="Orange">
+    <color rgba="1.0 0.423529411765 0.0392156862745 1.0"/>
+  </material>
+  <material name="Brown">
+    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0"/>
   </material>
   <material name="Red">
     <color rgba="0.8 0.0 0.0 1.0"/>
@@ -35,11 +47,6 @@
   <!-- BASE-FOOTPRINT -->
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
   <link name="base_footprint">
-    <inertial>
-      <mass value="0.0001"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -51,7 +58,7 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="base_footprint_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.3"/>
+    <origin rpy="0 0 0" xyz="0 0 0.04"/>
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -60,48 +67,83 @@
   <!--Actual body/chassis of the robot-->
   <link name="base_link">
     <inertial>
-      <mass value="1"/>
+      <mass value="0.5"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <!--The 3x3 rotational inertia matrix. -->
-      <inertia ixx="0.0241666666667" ixy="0" ixz="0" iyy="0.0241666666667" iyz="0" izz="0.0241666666667"/>
+      <inertia ixx="0.00270833333333" ixy="0" ixz="0" iyy="0.00270833333333" iyz="0" izz="0.00270833333333"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="1 0.5 0.25"/>
+        <box size="0.25 0.25 0.05"/>
       </geometry>
-      <material name="Yellow"/>
+      <material name="LightGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0 " xyz="0 0 0"/>
       <geometry>
-        <box size="1 0.5 0.25"/>
+        <box size="0.25 0.25 0.05"/>
       </geometry>
     </collision>
   </link>
   <gazebo reference="base_link">
-    <material>Gazebo/Yellow</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/White</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!-- BODY -->
+  <link name="body">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.08                      0.15                      0.3"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.25                      0.25                      0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.001875" ixy="0" ixz="0" iyy="0.00160666666667" iyz="0" izz="0.00160666666667"/>
+    </inertial>
+  </link>
+  <gazebo reference="body">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Grey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <origin rpy="0 0 0" xyz="0.0                    0.0                    0.175"/>
+  </joint>
   <!-- WHEELs -->
   <link name="base_link_right_wheel">
     <visual>
       <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.2"/>
+        <cylinder length="0.01" radius="0.03"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.2"/>
+        <cylinder length="0.01" radius="0.03"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.02"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.00102083333333" ixy="0" ixz="0" iyy="0.00102083333333" iyz="0" izz="0.002"/>
+      <inertia ixx="4.66666666667e-06" ixy="0" ixz="0" iyy="4.66666666667e-06" iyz="0" izz="9e-06"/>
     </inertial>
   </link>
   <gazebo reference="base_link_right_wheel">
@@ -110,21 +152,23 @@
     <kp value="10000000.0"/>
     <kd value="1.0"/>
     <fdir1 value="1 0 0"/>
-    <material>Gazebo/Grey</material>
+    <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="base_link_right_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="base_link_right_wheel"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="0.0                    -0.3                    -0.1"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.1                    -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
   <transmission name="base_link_right_wheel_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_link_right_wheel_joint"/>
+    <joint name="base_link_right_wheel_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
     <actuator name="base_link_right_wheel_joint_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
@@ -134,20 +178,20 @@
     <visual>
       <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.2"/>
+        <cylinder length="0.01" radius="0.03"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.2"/>
+        <cylinder length="0.01" radius="0.03"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="0.02"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.00102083333333" ixy="0" ixz="0" iyy="0.00102083333333" iyz="0" izz="0.002"/>
+      <inertia ixx="4.66666666667e-06" ixy="0" ixz="0" iyy="4.66666666667e-06" iyz="0" izz="9e-06"/>
     </inertial>
   </link>
   <gazebo reference="base_link_left_wheel">
@@ -156,34 +200,363 @@
     <kp value="10000000.0"/>
     <kd value="1.0"/>
     <fdir1 value="1 0 0"/>
-    <material>Gazebo/Grey</material>
+    <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="base_link_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="base_link_left_wheel"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="0.0                    0.3                    -0.1"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.1                    -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
   <transmission name="base_link_left_wheel_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="base_link_left_wheel_joint"/>
+    <joint name="base_link_left_wheel_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
     <actuator name="base_link_left_wheel_joint_motor">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <!-- ARMS -->
+  <link name="right_arm_slider">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.41666666667e-06" ixy="0" ixz="0" iyy="2.41666666667e-06" iyz="0" izz="2.41666666667e-06"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_arm_slider">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="body_right_arm_slider_joint" type="prismatic">
+    <parent link="body"/>
+    <child link="right_arm_slider"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.25" upper="0.0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.1                    0.14"/>
+  </joint>
+  <transmission name="body_right_arm_slider_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_right_arm_slider_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="body_right_arm_slider_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="left_arm_slider">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05                      0.05                      0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.41666666667e-06" ixy="0" ixz="0" iyy="2.41666666667e-06" iyz="0" izz="2.41666666667e-06"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_arm_slider">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="body_left_arm_slider_joint" type="prismatic">
+    <parent link="body"/>
+    <child link="left_arm_slider"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.25" upper="0.0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.1                    0.14"/>
+  </joint>
+  <transmission name="body_left_arm_slider_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="body_left_arm_slider_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="body_left_arm_slider_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="right_arm_arm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_arm_arm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_arm_slider_right_arm_arm_joint" type="revolute">
+    <parent link="right_arm_slider"/>
+    <child link="right_arm_arm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.085                    -0.025"/>
+  </joint>
+  <transmission name="right_arm_slider_right_arm_arm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_arm_slider_right_arm_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_arm_slider_right_arm_arm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="left_arm_arm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_arm_arm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_arm_slider_left_arm_arm_joint" type="revolute">
+    <parent link="left_arm_slider"/>
+    <child link="left_arm_arm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.085                    -0.025"/>
+  </joint>
+  <transmission name="left_arm_slider_left_arm_arm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_arm_slider_left_arm_arm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_arm_slider_left_arm_arm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="right_arm_forearm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_arm_forearm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_arm_arm_right_arm_forearm_joint" type="revolute">
+    <parent link="right_arm_arm"/>
+    <child link="right_arm_forearm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    -0.16                    -0.03"/>
+  </joint>
+  <transmission name="right_arm_arm_right_arm_forearm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_arm_arm_right_arm_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_arm_arm_right_arm_forearm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link name="left_arm_forearm">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.04                      0.2                      0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.000340833333333" ixy="0" ixz="0" iyy="2.08333333333e-05" iyz="0" izz="2.08333333333e-05"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_arm_forearm">
+    <mu1 value="0.2"/>
+    <mu2 value="0.2"/>
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_arm_arm_left_arm_forearm_joint" type="revolute">
+    <parent link="left_arm_arm"/>
+    <child link="left_arm_forearm"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.785398163397" upper="0.785398163397" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.16                    -0.03"/>
+  </joint>
+  <transmission name="left_arm_arm_left_arm_forearm_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_arm_arm_left_arm_forearm_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_arm_arm_left_arm_forearm_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- Hokuyo Laser -->
+  <link name="hokuyo_link">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://debra_description/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1e-5"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+  </link>
+  <joint name="hokuyo_joint" type="fixed">
+    <parent link="body"/>
+    <child link="hokuyo_link"/>
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <origin rpy="0 0 0" xyz="0.0                    0.0                    0.19"/>
+  </joint>
+  <gazebo reference="hokuyo_link">
+    <sensor name="head_hokuyo_sensor" type="gpu_ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+                 achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                 stddev of 0.01m will put 99.7% of samples within 0.03m of the
+                 true reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin filename="libgazebo_ros_gpu_laser.so" name="gazebo_ros_head_hokuyo_controller">
+        <topicName>/debra/laser/scan</topicName>
+        <frameName>hokuyo_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- Base controller -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
       <alwaysOn>true</alwaysOn>
       <updateRate>10</updateRate>
       <leftJoint>base_link_right_wheel_joint</leftJoint>
       <rightJoint>base_link_left_wheel_joint</rightJoint>
-      <wheelSeparation>0.6</wheelSeparation>
-      <wheelDiameter>0.4</wheelDiameter>
+      <wheelSeparation>0.2</wheelSeparation>
+      <wheelDiameter>0.06</wheelDiameter>
       <torque>20</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
@@ -191,6 +564,12 @@
       <robotBaseFrame>base_footprint</robotBaseFrame>
     </plugin>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control"/>
+  </gazebo>
+  <!-- Arm controller -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace>/debra</robotNamespace>
+    </plugin>
   </gazebo>
 </robot>
 

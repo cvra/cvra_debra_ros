@@ -17,25 +17,50 @@
   </include>
 
   <!-- urdf xml robot description loaded on the Parameter Server-->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find debra_description)/urdf/debra.xacro'" />
+  <param name="robot_description"
+         command="$(find xacro)/xacro.py '$(find debra_description)/urdf/debra.xacro'" />
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
-  <node name="debra_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-    args="-urdf -param robot_description -model debra" />
+  <node name="debra_spawn"
+        pkg="gazebo_ros"
+        type="spawn_model"
+        output="screen"
+        args="-urdf -param robot_description -model debra" />
 
   <!-- robot visualization in Rviz -->
   <group if="$(arg show_rviz)">
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find debra_gazebo)/launch/gazebo.rviz"/>
+    <node name="rviz"
+          pkg="rviz"
+          type="rviz"
+          args="-d $(find urdf_tutorial)/urdf.rviz"
+          required="true" />
 
     <!-- load joint controller configurations from YAML file to parameter server -->
-    <rosparam file="$(find debra_control)/config/joint_position_control.yaml" command="load" />
+    <rosparam file="$(find debra_control)/config/joint_position_control.yaml"
+              command="load" />
     <!-- load the controllers -->
-    <node name="debra_controller" pkg="controller_manager" type="spawner" output="screen"
-      args="joint_state_controller" />
+    <!-- load the controllers -->
+    <node name="controller_spawner"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          ns="/debra"
+          args="joint_state_controller
+                right_arm_slider_position_controller
+                left_arm_slider_position_controller
+                right_wheel_position_controller
+                left_wheel_position_controller" />
 
     <!-- publish all the frames to TF -->
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
-      <param name="publish_frequency" value="50"/> <!-- Hz -->
+    <node name="robot_state_publisher"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher"
+          respawn="false"
+          output="screen" >
+      <param name="publish_frequency"
+             value="50"/> <!-- Hz -->
+      <remap from="/joint_states" to="/debra/joint_states" />
     </node>
   </group>
 
