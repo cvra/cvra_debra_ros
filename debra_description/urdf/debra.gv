@@ -11,6 +11,7 @@ node [shape=box];
 "right_arm_slider" [label="right_arm_slider"];
 "right_arm_arm" [label="right_arm_arm"];
 "right_arm_forearm" [label="right_arm_forearm"];
+"hokuyo_link" [label="hokuyo_link"];
 node [shape=ellipse, color=blue, fontcolor=blue];
 "base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.04 \nrpy: 0 -0 0"]
 "base_footprint_joint" -> "base_link"
@@ -32,4 +33,6 @@ node [shape=ellipse, color=blue, fontcolor=blue];
 "right_arm_slider_right_arm_arm_joint" -> "right_arm_arm"
 "right_arm_arm" -> "right_arm_arm_right_arm_forearm_joint" [label="xyz: 0 -0.16 -0.03 \nrpy: 0 -0 0"]
 "right_arm_arm_right_arm_forearm_joint" -> "right_arm_forearm"
+"body" -> "hokuyo_joint" [label="xyz: 0 0 0.19 \nrpy: 0 -0 0"]
+"hokuyo_joint" -> "hokuyo_link"
 }

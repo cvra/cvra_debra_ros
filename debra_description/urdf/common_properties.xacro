@@ -97,4 +97,10 @@
   <xacro:property name="arm_forearm_limit_upper" value="${M_PI / 4}" />
   <xacro:property name="arm_forearm_limit_lower" value="${- M_PI / 4}" />
 
+  <!-- Hokuyo -->
+  <xacro:property name="hokuyo_x_origin_to_parent_origin" value="0.0" />
+  <xacro:property name="hokuyo_y_origin_to_parent_origin" value="0.0" />
+  <xacro:property name="hokuyo_z_origin_to_parent_origin"
+                  value="${(body_z_size + 0.08) / 2}" />
+
 </robot>
