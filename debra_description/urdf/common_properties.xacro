@@ -65,4 +65,19 @@
   <xacro:property name="arm_slider_limit_upper" value="0.3" />
   <xacro:property name="arm_slider_limit_lower" value="0" />
 
+  <!-- Arm arms -->
+  <xacro:property name="arm_arm_x_size" value="0.04" />
+  <xacro:property name="arm_arm_y_size" value="0.15" />
+  <xacro:property name="arm_arm_z_size" value="0.03" />
+  <xacro:property name="arm_arm_mass" value="0.1" />
+
+  <xacro:property name="arm_arm_x_origin_to_base_origin" value="0.0" />
+  <xacro:property name="arm_arm_y_origin_to_base_origin"
+                  value="${(arm_arm_y_size - arm_slider_y_size) / 2 + 0.015}" />
+  <xacro:property name="arm_arm_z_origin_to_base_origin"
+                  value="${- (arm_slider_z_size + arm_arm_z_size) / 2}" />
+
+  <xacro:property name="arm_arm_limit_upper" value="${M_PI / 4}" />
+  <xacro:property name="arm_arm_limit_lower" value="${- M_PI / 4}" />
+
 </robot>
