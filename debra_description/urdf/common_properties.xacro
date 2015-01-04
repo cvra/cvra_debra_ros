@@ -45,9 +45,9 @@
   <xacro:property name="wheel_height" value="0.01" />
   <xacro:property name="wheel_mass" value="0.02" /> <!-- in kg -->
 
-  <xacro:property name="base_x_origin_to_wheel_origin" value="0.0" />
-  <xacro:property name="base_y_origin_to_wheel_origin" value="0.1" />
-  <xacro:property name="base_z_origin_to_wheel_origin" value="-0.01" />
+  <xacro:property name="base_x_origin_to_wheel_origin" value="-0.005" />
+  <xacro:property name="base_y_origin_to_wheel_origin" value="0.078" />
+  <xacro:property name="base_z_origin_to_wheel_origin" value="0.013" />
   <xacro:property name="wheel_separation"
                   value="${base_y_origin_to_wheel_origin * 2}" />
 
