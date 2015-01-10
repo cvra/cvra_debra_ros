@@ -62,9 +62,9 @@
       <mass
         value="0.546" />
       <inertia
-        ixx="2.024E-03" ixy="2.367E-07" ixz="-4.520E-06"
-        iyy="3.561E-03" iyz="-4.595E-06"
-        izz="1.834E-03" />
+        ixx="0.1" ixy="0.0" ixz="0.0"
+        iyy="0.1" iyz="0.0"
+        izz="0.1" />
     </inertial>
   </link>
   <gazebo reference="base_link">
@@ -91,40 +91,6 @@
          translateX="1"
          translateY="1"
          flipY="1" />
-
-  <!-- ARMS -->
-  <arm_slider lr="right"
-              parent="body"
-              translateX="0"
-              translateY="-1"
-              flipY="0" />
-  <arm_slider lr="left"
-              parent="body"
-              translateX="0"
-              translateY="1"
-              flipY="0" />
-
-  <arm_arm lr="right"
-           parent="right_arm_slider"
-           translateX="0"
-           translateY="-1"
-           flipY="0" />
-  <arm_arm lr="left"
-           parent="left_arm_slider"
-           translateX="0"
-           translateY="1"
-           flipY="0" />
-
-  <arm_forearm lr="right"
-               parent="right_arm_arm"
-               translateX="0"
-               translateY="-1"
-               flipY="0" />
-  <arm_forearm lr="left"
-               parent="left_arm_arm"
-               translateX="0"
-               translateY="1"
-               flipY="0" />
 
   <!-- Hokuyo Laser -->
   <hokuyo parent="body" />
