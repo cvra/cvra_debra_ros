@@ -39,7 +39,6 @@
     <rosparam file="$(find debra_control)/config/joint_position_control.yaml"
               command="load" />
     <!-- load the controllers -->
-    <!-- load the controllers -->
     <node name="controller_spawner"
           pkg="controller_manager"
           type="spawner"
@@ -47,8 +46,6 @@
           output="screen"
           ns="/debra"
           args="joint_state_controller
-                right_arm_slider_position_controller
-                left_arm_slider_position_controller
                 right_wheel_position_controller
                 left_wheel_position_controller" />
 
@@ -60,7 +57,8 @@
           output="screen" >
       <param name="publish_frequency"
              value="50"/> <!-- Hz -->
-      <remap from="/joint_states" to="/debra/joint_states" />
+      <remap from="/joint_states"
+             to="/debra/joint_states" />
     </node>
   </group>
 

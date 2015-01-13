@@ -13,11 +13,11 @@ node [shape=box];
 "right_arm_forearm" [label="right_arm_forearm"];
 "hokuyo_link" [label="hokuyo_link"];
 node [shape=ellipse, color=blue, fontcolor=blue];
-"base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.04 \nrpy: 0 -0 0"]
+"base_footprint" -> "base_footprint_joint" [label="xyz: 0 0 0.017 \nrpy: 0 -0 0"]
 "base_footprint_joint" -> "base_link"
-"base_link" -> "base_link_left_wheel_joint" [label="xyz: 0 0.1 -0.01 \nrpy: 0 -0 0"]
+"base_link" -> "base_link_left_wheel_joint" [label="xyz: -0.005 0.078 0.013 \nrpy: 0 -0 0"]
 "base_link_left_wheel_joint" -> "base_link_left_wheel"
-"base_link" -> "base_link_right_wheel_joint" [label="xyz: 0 -0.1 -0.01 \nrpy: 0 -0 0"]
+"base_link" -> "base_link_right_wheel_joint" [label="xyz: -0.005 -0.078 0.013 \nrpy: 0 -0 0"]
 "base_link_right_wheel_joint" -> "base_link_right_wheel"
 "base_link" -> "body_joint" [label="xyz: 0 0 0.175 \nrpy: 0 -0 0"]
 "body_joint" -> "body"

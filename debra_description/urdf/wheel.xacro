@@ -12,27 +12,28 @@
     <link name="${parent}_${lr}_wheel">
       <visual>
         <origin xyz="0 0 0"
-                rpy="${flipY * M_PI / 2} 0 0" />
+                rpy="0 ${(flipY - 1) * M_PI / 2} ${M_PI / 2}" />
         <geometry>
-          <cylinder length="${wheel_height}"
-                    radius="${wheel_radius}" />
+          <mesh filename="package://debra_description/meshes/wheel.stl" />
         </geometry>
-        <material name="DarkGrey" />
+        <material name="wheel_color">
+          <color rgba="0.867 0.910 1 1" />
+        </material>
       </visual>
       <collision>
         <origin xyz="0 0 0"
-                rpy="${flipY * M_PI / 2} 0 0" />
+                rpy="0 ${(flipY - 1) * M_PI / 2} ${M_PI / 2}" />
         <geometry>
-          <cylinder length="${wheel_height}" radius="${wheel_radius}" />
+          <mesh filename="package://debra_description/meshes/wheel.stl" />
         </geometry>
       </collision>
-      <inertial>
-        <mass value="${wheel_mass}" />
+       <inertial>
         <origin xyz="0 0 0"
-                rpy="0 0 0" />
-        <cylinder_inertia  m="${wheel_mass}"
-                           r="${wheel_radius}"
-                           h="${wheel_height}" />
+                rpy="0 ${(flipY - 1) * M_PI / 2} ${M_PI / 2}" />
+        <mass value="0.066" />
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0"
+                 iyy="0.1" iyz="0.0"
+                 izz="0.1" />
       </inertial>
     </link>
 
