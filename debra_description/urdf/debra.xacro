@@ -6,9 +6,6 @@
   <xacro:include filename="$(find debra_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/body.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/wheel.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/arm_slider.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/arm_arm.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/arm_forearm.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/hokuyo.xacro" />
 
   <!-- BASE-FOOTPRINT -->
