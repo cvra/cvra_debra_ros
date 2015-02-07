@@ -1,6 +1,6 @@
-cvra_debra_ros
-==============
-ROS metapackage with several ROS packages related to Debra.
+roscvra
+=======
+ROS stack of nodes that run on our robots
 
 Setup
 -----
@@ -10,7 +10,7 @@ To setup ROS and everything, simply run:
 bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
-git clone https://github.com/cvra/cvra_debra_ros.git
+git clone https://github.com/cvra/roscvra.git
 chmod +x setup.bash
 sudo ./setup.bash
 cd ..
