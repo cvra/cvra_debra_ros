@@ -23,6 +23,7 @@ Remember to run these last two lines everything you tweak or change something in
 Packages
 --------
 Here is a list of the packages contained in this repository:
+* **cvra_msgs**: which includes all our custome message structures
 * **debra_control**: which handles the joint controllers
 * **debra_description**: which provides description files ot model Debra
 * **debra_gazebo**: which handles gazebo interactions with ROS & Debra

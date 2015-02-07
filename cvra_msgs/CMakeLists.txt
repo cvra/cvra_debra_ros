@@ -13,6 +13,9 @@ add_message_files(
   BaseTrajectory.msg
   BaseTrajectoryPoint.msg
   EnnemyPosition.msg
+  ErrorControl.msg
+  ErrorFatal.msg
+  JointInfo.msg
   JointTrajectory.msg
   JointTrajectoryPoint.msg
   PID.msg
