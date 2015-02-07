@@ -7,15 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
   xacro
 )
 
-###################################
-## catkin specific configuration ##
-###################################
-
 catkin_package()
-
-###########
-## Build ##
-###########
 
 include_directories(
   ${catkin_INCLUDE_DIRS}

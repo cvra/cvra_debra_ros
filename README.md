@@ -1,6 +1,6 @@
-cvra_debra_ros
-==============
-ROS metapackage with several ROS packages related to Debra.
+roscvra
+=======
+ROS stack of nodes that run on our robots
 
 Setup
 -----
@@ -10,7 +10,7 @@ To setup ROS and everything, simply run:
 bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
-git clone https://github.com/cvra/cvra_debra_ros.git
+git clone https://github.com/cvra/roscvra.git
 chmod +x setup.bash
 sudo ./setup.bash
 cd ..
@@ -23,6 +23,7 @@ Remember to run these last two lines everything you tweak or change something in
 Packages
 --------
 Here is a list of the packages contained in this repository:
+* **cvra_msgs**: which includes all our custome message structures
 * **debra_control**: which handles the joint controllers
 * **debra_description**: which provides description files ot model Debra
 * **debra_gazebo**: which handles gazebo interactions with ROS & Debra
