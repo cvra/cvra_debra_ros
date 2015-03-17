@@ -18,6 +18,7 @@ sudo apt-get install -y python-rosinstall
 # Create ROS Workspace
 echo "Setting up a catkin workspace..."
 mkdir -p ~/catkin_ws/src
+sudo chown -R $USER catkin_ws/ # Transfer ownership to current user
 cd ~/catkin_ws/src
 catkin_init_workspace
 cd ~/catkin_ws/
@@ -26,7 +27,7 @@ source devel/setup.bash
 
 # Install missing ROS packages
 echo "Installing some missing ROS packages..."
-sudo apt-get install -y ros-indigo-ros-control ros-indigo-ros-controllers ros-indigo-joystick-drivers
+sudo apt-get install -y ros-indigo-ros-control ros-indigo-ros-controllers ros-indigo-joystick-drivers ros-indigo-robot-state-publisher
 
 # Install Gazebo
 echo "Installing and setting up Gazebo..."
@@ -39,4 +40,13 @@ sudo apt-get install -y ros-indigo-gazebo-ros-pkgs ros-indigo-gazebo-ros-control
 echo "Setting up ROS dependencies..."
 rosdep install robot_state_publisher urdf xacro controller_manager geometry_msgs joy ros_control ros_controllers sensor_msgs std_msgs gazebo_msgs gazebo_plugins gazebo_ros gazebo_ros_control joy
 
-echo "Finishing..."
+# Get CVRA ROS stack
+echo "Installing CVRA ROS stack..."
+cd ~/catkin_ws/src
+git clone https://github.com/cvra/roscvra.git roscvra
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
+cd ~/
+
+echo "Finishing... Done."
