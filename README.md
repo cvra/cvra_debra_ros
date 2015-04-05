@@ -23,11 +23,16 @@ Remember to run these last two lines everything you tweak or change something in
 Packages
 --------
 Here is a list of the packages contained in this repository:
-* **cvra_msgs**: which includes all our custome message structures
-* **debra_control**: which handles the joint controllers
-* **debra_description**: which provides description files ot model Debra
-* **debra_gazebo**: which handles gazebo interactions with ROS & Debra
+- **cvra_msgs**: which includes all our custome message structures
+- **debra_control**: which handles the joint controllers
+- **debra_description**: which provides description files ot model Debra
+- **debra_gazebo**: which handles gazebo interactions with ROS & Debra
+- **robot_odometry**: which relays odometry pose estimation received from master board
 
+Dependencies
+------------
+To use **robot_odometry**, you will need [simplerpc](https://github.com/cvra/simplerpc) and [serial-datagram](https://github.com/cvra/serial-datagram)
+(to be able to use them along with python 3, you may want to install them using pip3.
 
 To do
 -----
