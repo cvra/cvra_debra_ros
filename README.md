@@ -22,21 +22,18 @@ Remember to run these last two lines everything you tweak or change something in
 
 Packages
 --------
-Here is a list of the packages contained in this repository:
+Here is a list of the packages contained in this repository that are actively used/supported:
+- **master_bridge**: acts as a bridge between the master board and the PC that runs ROS using the simpleRPC interface
 - **cvra_msgs**: which includes all our custome message structures
+
+Other packages are:
+- **base_control**: which relays odometry pose estimation received from master board (for now)
 - **debra_control**: which handles the joint controllers
 - **debra_description**: which provides description files ot model Debra
 - **debra_gazebo**: which handles gazebo interactions with ROS & Debra
-- **robot_odometry**: which relays odometry pose estimation received from master board
+- **joint_control**: which relays joint info received from master board (for now)
 
 Dependencies
 ------------
-To use **robot_odometry**, you will need [simplerpc](https://github.com/cvra/simplerpc) and [serial-datagram](https://github.com/cvra/serial-datagram)
+You will need [simplerpc](https://github.com/cvra/simplerpc) and [serial-datagram](https://github.com/cvra/serial-datagram)
 (to be able to use them along with python 3, you may want to install them using pip3.
-
-To do
------
-* Fix the `catkin_make` compilation problem with **debra_control**. Note: this
-doesn't affect the operation of the package.
-* Fix the operation problems of running roscore in parallel with the packages
-of this metapackage.
