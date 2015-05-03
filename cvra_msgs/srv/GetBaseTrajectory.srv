@@ -1,0 +1,7 @@
+cvra_msgs/Pose2D     start_pose
+cvra_msgs/Velocity2D start_velocity
+cvra_msgs/Pose2D     target_pose
+float64              sampling_period
+---
+cvra_msgs/BaseTrajectory base_trajectory
+int32 length

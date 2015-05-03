@@ -21,7 +21,12 @@ add_message_files(
   PID.msg
   Pose2D.msg
   Pose2DStamped.msg
-  Twist2D.msg
+  Velocity2D.msg
+)
+
+add_service_files(
+  FILES
+  GetBaseTrajectory.srv
 )
 
 generate_messages(

@@ -1,17 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(debra_control)
+project(molly_base_motion_planner)
 
 find_package(catkin REQUIRED COMPONENTS
-  controller_manager
-  geometry_msgs
-  joy
-#  ros_control
-#  ros_controllers
-  sensor_msgs
+  roscpp
+  rospy
   std_msgs
+  cvra_msgs
 )
 
-catkin_package()
+catkin_package(CATKIN_DEPENDS message_runtime)
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
