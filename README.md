@@ -27,13 +27,6 @@ Here is a list of the packages contained in this repository that are actively us
 - **master_bridge**: acts as a bridge between the master board and the PC that runs ROS using the simpleRPC interface
 - **molly_base_motion_planner**: ROS bindings to molly
 
-Other packages are:
-- **base_control**: which relays odometry pose estimation received from master board (for now)
-- **debra_control**: which handles the joint controllers
-- **debra_description**: which provides description files ot model Debra
-- **debra_gazebo**: which handles gazebo interactions with ROS & Debra
-- **joint_control**: which relays joint info received from master board (for now)
-
 Dependencies
 ------------
 You will need
