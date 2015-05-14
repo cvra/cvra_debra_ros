@@ -13,3 +13,8 @@ catkin_package(CATKIN_DEPENDS message_runtime)
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
+
+catkin_install_python(
+  PROGRAMS scripts/master_publisher.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
