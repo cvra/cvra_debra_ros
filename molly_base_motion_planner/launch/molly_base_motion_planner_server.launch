@@ -1,9 +1,12 @@
 <launch>
+  <arg name="robot_ns" default="debra" />
+
   <node name="molly_base_motion_planner"
         pkg="molly_base_motion_planner"
         type="get_base_trajectory_server.py"
         respawn="true"
         respawn_delay="0"
+        ns="$(arg robot_ns)"
         output="screen">
   </node>
 </launch>

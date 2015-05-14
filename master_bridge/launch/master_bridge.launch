@@ -1,9 +1,12 @@
 <launch>
+  <arg name="robot_ns" default="debra" />
+
   <node name="master_bridge_publisher"
         pkg="master_bridge"
         type="master_publisher.py"
         respawn="true"
         respawn_delay="0"
+        ns="$(arg robot_ns)"
         output="screen">
   </node>
   <!-->Complete with other nodes (subscriber, server, etc)<-->
