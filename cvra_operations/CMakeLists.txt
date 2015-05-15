@@ -1,13 +1,18 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(debra_description)
+project(cvra_operations)
 
 find_package(catkin REQUIRED COMPONENTS
-  robot_state_publisher
-  urdf
-  xacro
+  roscpp
+  rospy
+  std_msgs
+  cvra_msgs
+  master_bridge
+  molly_base_motion_planner
+  sick_tim
+  webcam_stream
 )
 
-catkin_package()
+catkin_package(CATKIN_DEPENDS message_runtime)
 
 include_directories(
   ${catkin_INCLUDE_DIRS}

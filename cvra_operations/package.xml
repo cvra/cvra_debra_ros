@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>cvra_operations</name>
+  <version>0.1.0</version>
+  <description>Metapackage handling the deployment of all nodes</description>
+
+  <maintainer email="missrisalaheddine@gmail.com">Salah-Eddine Missri</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>cvra_msgs</build_depend>
+  <build_depend>master_bridge</build_depend>
+  <build_depend>molly_base_motion_planner</build_depend>
+  <build_depend>sick_tim</build_depend>
+  <build_depend>webcam_stream</build_depend>
+
+  <run_depend>message_runtime</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>cvra_msgs</run_depend>
+  <run_depend>master_bridge</run_depend>
+  <run_depend>molly_base_motion_planner</run_depend>
+  <run_depend>sick_tim</run_depend>
+  <run_depend>webcam_stream</run_depend>
+
+  <export></export>
+</package>

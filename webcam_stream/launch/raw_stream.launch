@@ -1,5 +1,11 @@
 <launch>
-  <node name="usb_camera_stream" pkg="usb_cam" type="usb_cam_node" output="screen" >
+  <arg name="robot_ns" default="debra" />
+
+  <node name="usb_camera_stream"
+        pkg="usb_cam"
+        type="usb_cam_node"
+        ns="$(arg robot_ns)"
+        output="screen">
     <param name="video_device" value="/dev/video1" />
     <param name="image_width" value="640" />
     <param name="image_height" value="480" />
