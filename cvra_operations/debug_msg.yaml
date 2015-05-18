@@ -1,0 +1,7 @@
+stream_current_pid/frequency: 0
+velocity_pid/frequency: 0
+position_pid/frequency: 0
+index/frequency: 0
+motor_encoder/frequency: 0
+motor_position/frequency: 0
+motor_torque/frequency: 0
