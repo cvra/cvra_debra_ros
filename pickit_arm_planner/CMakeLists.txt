@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(pickit_arm_planner)
 
 find_package(catkin REQUIRED COMPONENTS
-  cvra_msgs
   roscpp
   rospy
   std_msgs
+  cvra_msgs
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime)

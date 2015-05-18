@@ -15,18 +15,22 @@ add_message_files(
   EnnemyPosition.msg
   ErrorControl.msg
   ErrorFatal.msg
+  JointDebug.msg
   JointInfo.msg
   JointTrajectory.msg
   JointTrajectoryPoint.msg
   PID.msg
+  PIDTune.msg
   Pose2D.msg
   Pose2DStamped.msg
+  Tool.msg
   Velocity2D.msg
 )
 
 add_service_files(
   FILES
   GetBaseTrajectory.srv
+  GetArmTrajectory.srv
 )
 
 generate_messages(
