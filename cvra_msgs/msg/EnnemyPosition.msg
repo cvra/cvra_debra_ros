@@ -2,8 +2,7 @@
 # ennemy localisation
 std_msgs/Header header
 
-float64 x
-float64 y
-float64 z
-
-float64[9] covariance
+string robot_id
+float32 x
+float32 y
+float32[4] covariance
