@@ -1,0 +1,12 @@
+<launch>
+  <arg name="robot_ns" default="debra" />
+
+  <node name="ennemy_position_publisher"
+        pkg="beacons_interface"
+        type="ennemy_position_publisher.py"
+        respawn="true"
+        respawn_delay="0"
+        ns="$(arg robot_ns)/beacons"
+        output="screen">
+  </node>
+</launch>
