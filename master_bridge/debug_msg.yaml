@@ -1,0 +1,20 @@
+stream_current_pid/frequency: 50
+stream_current_pid/enabled: False
+
+velocity_pid/frequency: 50
+velocity_pid/enabled: False
+
+position_pid/frequency: 50
+position_pid/enabled: False
+
+index/frequency: 50
+index/enabled: False
+
+motor_encoder/frequency: 50
+motor_encoder/enabled: False
+
+motor_position/frequency: 50
+motor_position/enabled: False
+
+motor_torque/frequency: 50
+motor_torque/enabled: False
