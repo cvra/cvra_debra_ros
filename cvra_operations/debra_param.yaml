@@ -1,74 +1,55 @@
-### Right arm parameters
+right_arm:
+    arm_length: 0.5
+    forearm_length: 0.3
+    origin:
+        x: 0.3
+        y: 0.3
+        z: 0.0
+    shoulder:
+        initial: 0.0
+        pos_range: [-pi / 3, pi / 3]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    elbow:
+        initial: 0.0
+        pos_range: [-pi / 2, pi / 2]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    wrist:
+        initial: 0.0
+        pos_range: [-1e9, 1e9]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    z:
+        initial: 0.0
+        pos_range: [ 0.0, 0.2]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
 
-# Link lengths
-right_arm/arm_length: 0.5
-right_arm/forearm_length: 0.3
-
-# Origin of arm - position of fixation base
-right_arm/origin/x: 0.3
-right_arm/origin/y: 0.3
-right_arm/origin/z: 0.0
-
-# Theta 1 joint constraints
-right_arm/shoulder/pos_range: [-pi / 3, pi / 3]
-right_arm/shoulder/vel_range: [-2.0, 2.0]
-right_arm/shoulder/acc_range: [-2.0, 2.0]
-
-# Theta 2 joint constraints
-right_arm/elbow/pos_range: [-pi / 2, pi / 2]
-right_arm/elbow/vel_range: [-2.0, 2.0]
-right_arm/elbow/acc_range: [-2.0, 2.0]
-
-# Theta 3 joint constraints
-right_arm/wrist/pos_range: [-1e9, 1e9]
-right_arm/wrist/vel_range: [-2.0, 2.0]
-right_arm/wrist/acc_range: [-2.0, 2.0]
-
-# Z joint constraints
-right_arm/z/pos_range: [ 0.0, 0.2]
-right_arm/z/vel_range: [-2.0, 2.0]
-right_arm/z/acc_range: [-2.0, 2.0]
-
-# Initial joint configuration
-right_arm/shoulder/initial: 0.0
-right_arm/elbow/initial: 0.0
-right_arm/wrist/initial: 0.0
-right_arm/z/initial: 0.0
-
-
-### Left arm parameters
-
-# Link lengths
-left_arm/arm_length: 0.5
-left_arm/forearm_length: 0.3
-
-# Origin of arm - position of fixation base
-left_arm/origin/x: 0.3
-left_arm/origin/y: 0.3
-left_arm/origin/z: 0.0
-
-# Theta 1 joint constraints
-left_arm/shoulder/pos_range: [-pi / 3, pi / 3]
-left_arm/shoulder/vel_range: [-2.0, 2.0]
-left_arm/shoulder/acc_range: [-2.0, 2.0]
-
-# Theta 2 joint constraints
-left_arm/elbow/pos_range: [-pi / 2, pi / 2]
-left_arm/elbow/vel_range: [-2.0, 2.0]
-left_arm/elbow/acc_range: [-2.0, 2.0]
-
-# Theta 3 joint constraints
-left_arm/wrist/pos_range: [-1e9, 1e9]
-left_arm/wrist/vel_range: [-2.0, 2.0]
-left_arm/wrist/acc_range: [-2.0, 2.0]
-
-# Z joint constraints
-left_arm/elbow/pos_range: [ 0.0, 0.2]
-left_arm/elbow/vel_range: [-2.0, 2.0]
-left_arm/elbow/acc_range: [-2.0, 2.0]
-
-# Initial joint configuration
-left_arm/shoulder/initial: 0.0
-left_arm/elbow/initial: 0.0
-left_arm/wrist/initial: 0.0
-left_arm/z/initial: 0.0
+left_arm:
+    arm_length: 0.5
+    forearm_length: 0.3
+    origin:
+        x: 0.3
+        y: 0.3
+        z: 0.0
+    shoulder:
+        initial: 0.0
+        pos_range: [-pi / 3, pi / 3]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    elbow:
+        initial: 0.0
+        pos_range: [-pi / 2, pi / 2]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    wrist:
+        initial: 0.0
+        pos_range: [-1e9, 1e9]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]
+    z:
+        initial: 0.0
+        pos_range: [ 0.0, 0.2]
+        vel_range: [-2.0, 2.0]
+        acc_range: [-2.0, 2.0]

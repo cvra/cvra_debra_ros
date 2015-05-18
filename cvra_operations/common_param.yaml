@@ -1,1 +1,2 @@
-time_resolution: 0.01
+common:
+    time_resolution: 0.01
