@@ -1,3 +1,5 @@
+string node_id
+
 cvra_msgs/PIDTune current
 cvra_msgs/PIDTune velocity
 cvra_msgs/PIDTune positon
