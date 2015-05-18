@@ -27,64 +27,76 @@ def motor_torque_cb(args):
     joint_publisher(args, 'motor_torque')
 
 def joint_publisher(args, type):
-    global pub_joint, joint
+    global publishers, joints
 
     if type == 'current':
         node_id, current, current_setpt, voltage = tuple(args)
 
-        joint.node_id = node_id
-        joint.current.measured = current
-        joint.current.setpoint = current_setpt
-        joint.voltage = voltage
+        joints[node_id].node_id = node_id
+        joints[node_id].current.measured = current
+        joints[node_id].current.setpoint = current_setpt
+        joints[node_id].voltage = voltage
 
     elif type == 'velocity':
         node_id, velocity, velocity_setpt = tuple(args)
 
-        joint.node_id = node_id
-        joint.velocity.measured = velocity
-        joint.velocity.setpoint = velocity_setpt
+        joints[node_id].node_id = node_id
+        joints[node_id].velocity.measured = velocity
+        joints[node_id].velocity.setpoint = velocity_setpt
 
     elif type == 'position':
         node_id, position, position_setpt = tuple(args)
 
-        joint.node_id = node_id
-        joint.position.measured = position
-        joint.position.setpoint = position_setpt
+        joints[node_id].node_id = node_id
+        joints[node_id].position.measured = position
+        joints[node_id].position.setpoint = position_setpt
 
     elif type == 'index':
         node_id, index = tuple(args)
 
-        joint.node_id = node_id
-        joint.index = index
-        joint.position.measured = index
+        joints[node_id].node_id = node_id
+        joints[node_id].index = index
+        joints[node_id].position.measured = index
 
     elif type == 'motor_encoder':
         node_id, raw_encoder = tuple(args)
 
-        joint.node_id = node_id
-        joint.raw_encoder_value = raw_encoder
+        joints[node_id].node_id = node_id
+        joints[node_id].raw_encoder_value = raw_encoder
 
     elif type == 'motor_position':
         node_id, position, velocity = tuple(args)
 
-        joint.node_id = node_id
-        joint.position.measured = position
-        joint.velocity.measured = velocity
+        joints[node_id].node_id = node_id
+        joints[node_id].position.measured = position
+        joints[node_id].velocity.measured = velocity
 
     elif type == 'motor_torque':
         node_id, torque, position = tuple(args)
 
-        joint.node_id = node_id
-        joint.torque = position
-        joint.position.measured = position
+        joints[node_id].node_id = node_id
+        joints[node_id].torque = position
+        joints[node_id].position.measured = position
 
-    pub_joint.publish(joint)
+    publishers[node_id].publish(joints[node_id])
 
 if __name__ == '__main__':
-    global pub_joint, joint
-    pub_joint = rospy.Publisher('joint_debug', JointDebug, queue_size=0)
+    global publishers, joints
+
+    pub_left_wheel = rospy.Publisher('left_wheel', JointDebug, queue_size=0)
+    pub_right_wheel = rospy.Publisher('right_wheel', JointDebug, queue_size=0)
+    pub_left_wrist = rospy.Publisher('left_wrist', JointDebug, queue_size=0)
     rospy.init_node('feedback_stream', anonymous=True)
-    joint = JointDebug()
+    left_wheel = JointDebug()
+    right_wheel = JointDebug()
+    left_wrist = JointDebug()
+
+    publishers = {'left-wheel': pub_left_wheel, \
+                  'right-wheel': pub_right_wheel, \
+                  'left-wrist': pub_left_wrist}
+    joints = {'left-wheel': left_wheel, \
+              'right-wheel': right_wheel, \
+              'left-wrist': left_wrist}
 
     TARGET = ('0.0.0.0', 20042)
     callbacks = {'current_pid': current_pid_cb, \
