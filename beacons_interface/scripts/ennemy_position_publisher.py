@@ -11,7 +11,7 @@ def ennemy_pos_publish(robot, x, y, var_x, var_y, cov_xy):
     ennemy.header.stamp.secs = now.secs
     ennemy.header.stamp.nsecs = now.nsecs
 
-    ennemy.robot_id = str(robot)
+    ennemy.robot_id = str(int(robot))
     ennemy.x = x
     ennemy.y = y
     ennemy.covariance = [ var_x, cov_xy,
@@ -26,23 +26,30 @@ def ennemy_pos_publish(robot, x, y, var_x, var_y, cov_xy):
 
 if __name__ == '__main__':
     # Setup serial interface
-    port = '/dev/ttyUSB0'
-    serial = serial.Serial(port=port, baudrate=19200)
+    port = rospy.get_param("/debra/beacons/port")
+    baud = rospy.get_param("/debra/beacons/baud")
+    serial = serial.Serial(port=port, baudrate=baud)
     stream = ""
 
-    # Setup publisher
-    pub_ennemy_1 = rospy.Publisher('ennemy_1', EnnemyPosition, queue_size=0)
-    pub_ennemy_2 = rospy.Publisher('ennemy_2', EnnemyPosition, queue_size=0)
-    rospy.init_node('ennemy_position', anonymous=True)
+    try:
+        # Setup publisher
+        pub_ennemy_1 = rospy.Publisher('ennemy_1', EnnemyPosition, queue_size=0)
+        pub_ennemy_2 = rospy.Publisher('ennemy_2', EnnemyPosition, queue_size=0)
+        rospy.init_node('ennemy_position', anonymous=True)
+        rate = rospy.Rate(10) # Run at 10 Hz
 
-    while True:
-        stream += serial.readline().decode("ascii")
-        data = stream.split("\n")
+        while not rospy.is_shutdown():
+            # Get serial data
+            stream += serial.readline().decode("ascii")
+            data = stream.split("\n")
 
-        for line in data:
-            if len(line.split(" ")) == 6:
-                try:
-                    robot, x, y, var_x, var_y, cov_xy = tuple(map(float, line.split()))
-                    ennemy_pos_publish(robot, x, y, var_x, var_y, cov_xy)
-                except:
-                    pass
+            for line in data:
+                if len(line.split(" ")) == 6:
+                    try:
+                        robot, x, y, var_x, var_y, cov_xy = tuple(map(float, line.split()))
+                        ennemy_pos_publish(robot, x, y, var_x, var_y, cov_xy) # Publish
+                    except:
+                        pass
+                rate.sleep()
+    except rospy.ROSInterruptException:
+        pass
