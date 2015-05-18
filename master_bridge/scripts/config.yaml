@@ -1,0 +1,5 @@
+actuator:
+    foobar2000:
+        stream:
+            current_pid: 50
+            velocity_pid: 50
