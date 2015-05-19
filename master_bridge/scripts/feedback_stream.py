@@ -14,6 +14,9 @@ def velocity_pid_cb(args):
 def position_pid_cb(args):
     joint_publisher(args, 'position')
 
+def index_cb(args):
+    joint_publisher(args, 'index')
+
 def joint_publisher(args, type):
     global pub_joint, joint
 
@@ -39,6 +42,13 @@ def joint_publisher(args, type):
         joint.position.measured = position
         joint.position.setpoint = position_setpt
 
+    elif type == 'index':
+        node_id, index = tuple(args)
+
+        joint.node_id = node_id
+        joint.index = index
+        joint.position.measured = index
+
     pub_joint.publish(joint)
 
 if __name__ == '__main__':
@@ -50,7 +60,8 @@ if __name__ == '__main__':
     TARGET = ('0.0.0.0', 20042)
     callbacks = {'current_pid': current_pid_cb, \
                  'velocity_pid': velocity_pid_cb, \
-                 'position_pid': position_pid_cb}
+                 'position_pid': position_pid_cb, \
+                 'index': index_cb}
 
     RequestHandler = create_request_handler(callbacks)
     server = socketserver.UDPServer(TARGET, RequestHandler)
