@@ -24,7 +24,7 @@ if __name__ == '__main__':
     rospy.init_node('master_bridge', anonymous=True)
 
     TARGET = ('0.0.0.0', 20000)
-    callbacks = {'odometry_raw': odometry_raw_cb, 'pos': joint_info_cb}
+    callbacks = {'odometry_raw': odometry_raw_cb}
 
     RequestHandler = create_request_handler(callbacks)
     server = socketserver.UDPServer(TARGET, RequestHandler)
