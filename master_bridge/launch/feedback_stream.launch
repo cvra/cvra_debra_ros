@@ -1,0 +1,31 @@
+<launch>
+  <arg name="robot_ns" default="debra" />
+
+<!--   <node name="master_bridge_publisher"
+        pkg="master_bridge"
+        type="master_publisher.py"
+        respawn="true"
+        respawn_delay="0"
+        ns="$(arg robot_ns)"
+        output="screen">
+  </node> -->
+
+  <node name="odometry_rviz_publisher"
+        pkg="master_bridge"
+        type="odo.py"
+        respawn="true"
+        respawn_delay="0"
+        ns="$(arg robot_ns)"
+        output="screen">
+  </node>
+
+  <node name="feedback_streamer"
+        pkg="master_bridge"
+        type="feedback_stream.py"
+        respawn="true"
+        respawn_delay="0"
+        ns="$(arg robot_ns)"
+        output="screen">
+  </node>
+  <!-->Complete with other nodes (subscriber, server, etc)<-->
+</launch>
