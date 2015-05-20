@@ -1,7 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import threading
 import rospy
-import tf
 from cvra_msgs.msg import Pose2D, JointInfo
 from cvra_rpc.message import *
 

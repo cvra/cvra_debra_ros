@@ -1,0 +1,2 @@
+beacons/port: '/dev/ttyUSB0'
+beacons/baud: 19200

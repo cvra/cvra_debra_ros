@@ -1,6 +1,19 @@
 <launch>
+  <!-- Initialise parameter server -->
+  <rosparam command="load"
+            file="$(find cvra_operations)/common_param.yaml"
+            ns="debra"/>
+  <rosparam command="load"
+            file="$(find cvra_operations)/debra_param.yaml"
+            ns="debra"/>
+
   <!-- Initiate communication with master board -->
   <include file="$(find master_bridge)/launch/master_bridge.launch">
+    <arg name="robot_ns" value="debra"/>
+  </include>
+
+  <!-- Setup communication with beacons -->
+  <include file="$(find beacons_interface)/launch/beacons_interface.launch">
     <arg name="robot_ns" value="debra"/>
   </include>
 

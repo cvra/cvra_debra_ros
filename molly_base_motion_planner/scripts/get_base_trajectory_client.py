@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import sys
 import rospy
 from cvra_msgs.srv import GetBaseTrajectory
