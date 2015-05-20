@@ -86,6 +86,7 @@ if __name__ == '__main__':
     joints = {}
 
     actuators = ['left-wheel',
+                 'left-z',
                  'left-shoulder',
                  'left-elbow',
                  'left-wrist',
@@ -94,10 +95,11 @@ if __name__ == '__main__':
                  'left-hand-2',
                  'left-hand-3',
                  'right-wheel',
+                 'right-z',
                  'right-shoulder',
                  'right-elbow',
-                 'right-hand-1'
-                 'right-hand-2'
+                 'right-hand-1',
+                 'right-hand-2',
                  'right-hand-3']
 
     for actuator in actuators:
