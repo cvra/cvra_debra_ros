@@ -82,21 +82,29 @@ def joint_publisher(args, type):
 
 if __name__ == '__main__':
     global publishers, joints
+    publishers = {}
+    joints = {}
 
-    pub_left_wheel = rospy.Publisher('left_wheel', JointDebug, queue_size=0)
-    pub_right_wheel = rospy.Publisher('right_wheel', JointDebug, queue_size=0)
-    pub_left_wrist = rospy.Publisher('left_wrist', JointDebug, queue_size=0)
+    actuators = ['left-wheel',
+                 'left-shoulder',
+                 'left-elbow',
+                 'left-wrist',
+                 'right-wrist',
+                 'left-hand-1',
+                 'left-hand-2',
+                 'left-hand-3',
+                 'right-wheel',
+                 'right-shoulder',
+                 'right-elbow',
+                 'right-hand-1'
+                 'right-hand-2'
+                 'right-hand-3']
+
+    for actuator in actuators:
+        publishers[actuator] = rospy.Publisher(actuator, JointDebug, queue_size=0)
+        joints[actuator] = JointDebug()
+
     rospy.init_node('feedback_stream', anonymous=True)
-    left_wheel = JointDebug()
-    right_wheel = JointDebug()
-    left_wrist = JointDebug()
-
-    publishers = {'left-wheel': pub_left_wheel, \
-                  'right-wheel': pub_right_wheel, \
-                  'left-wrist': pub_left_wrist}
-    joints = {'left-wheel': left_wheel, \
-              'right-wheel': right_wheel, \
-              'left-wrist': left_wrist}
 
     TARGET = ('0.0.0.0', 20042)
     callbacks = {'current_pid': current_pid_cb, \
