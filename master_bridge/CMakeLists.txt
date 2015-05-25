@@ -16,6 +16,8 @@ include_directories(
 
 catkin_install_python(
   PROGRAMS scripts/master_publisher.py
+           scripts/feedback_stream.py
+           scripts/odo.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

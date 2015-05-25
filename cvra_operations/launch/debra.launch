@@ -17,6 +17,11 @@
     <arg name="robot_ns" value="debra"/>
   </include>
 
+  <!-- Setup communication with beacons -->
+  <include file="$(find beacons_interface)/launch/ennemy_position_publisher.launch">
+    <arg name="robot_ns" value="debra"/>
+  </include>
+
   <!-- Setup base motion planner server -->
   <include file="$(find molly_base_motion_planner)/launch/molly_base_motion_planner_server.launch">
     <arg name="robot_ns" value="debra"/>

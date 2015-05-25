@@ -1,2 +1,3 @@
-beacons/port: '/dev/ttyUSB0'
-beacons/baud: 19200
+beacons:
+    port: '/dev/ttyUSB0'
+    baud: 19200
