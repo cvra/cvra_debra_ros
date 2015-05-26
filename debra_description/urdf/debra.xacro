@@ -4,7 +4,6 @@
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find debra_description)/urdf/common_properties.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/body.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/wheel.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/hokuyo.xacro" />
 
@@ -71,12 +70,6 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <!-- BODY -->
-  <body parent="base_link"
-        translateX="0"
-        translateY="0"
-        flipY="0" />
-
   <!-- WHEELs -->
   <wheel lr="right"
          parent="base_link"
@@ -90,7 +83,7 @@
          flipY="1" />
 
   <!-- Hokuyo Laser -->
-  <hokuyo parent="body" />
+  <hokuyo parent="base_link" />
 
   <!-- Base controller -->
   <gazebo>

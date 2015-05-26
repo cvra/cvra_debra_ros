@@ -1,4 +1,4 @@
-debra_description
+Debra description
 =================
 ROS package containing description files of Debra
 
@@ -10,6 +10,14 @@ To view the robot model in rviz, run one of the following:
 roslaunch debra_description debra_display.launch
 roslaunch debra_description debra_rviz.launch
 ```
+
+### Updating the model
+When changing the model of Debra,
+you can regenerate the urdf file from the xacro file by running:
+```sh
+rosrun xacro xacro.py debra.xacro > debra.urdf
+```
+Make sure you are in the correct tree `debra_descriptìon/urdf`
 
 ### Urdf parsing & visualisation tools
 You can parse the urdf file by running:
