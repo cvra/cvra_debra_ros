@@ -88,7 +88,7 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="base_footprint_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    <origin rpy="0 0 0" xyz="0 0 0.015"/>
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -160,7 +160,7 @@
     <parent link="base_link"/>
     <child link="base_link_right_wheel"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="-0.005                    -0.078                    0.0"/>
+    <origin rpy="0 0 0" xyz="-0.005                    -0.078                    0.015"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -212,7 +212,7 @@
     <parent link="base_link"/>
     <child link="base_link_left_wheel"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="-0.005                    0.078                    0.0"/>
+    <origin rpy="0 0 0" xyz="-0.005                    0.078                    0.015"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -252,7 +252,7 @@
     <parent link="base_link"/>
     <child link="hokuyo_link"/>
     <hardwareInterface>EffortJointInterface</hardwareInterface>
-    <origin rpy="0 0 0" xyz="0.0                    0.0                    0.065"/>
+    <origin rpy="0 0 0" xyz="0.0                    0.0                    0.06065"/>
   </joint>
   <!-- Hokuyo laser controller -->
   <gazebo reference="hokuyo_link">
