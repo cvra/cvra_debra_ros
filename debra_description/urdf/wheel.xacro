@@ -16,8 +16,8 @@
         <geometry>
           <mesh filename="package://debra_description/meshes/wheel.stl" />
         </geometry>
-        <material name="wheel_color">
-          <color rgba="0.867 0.910 1 1" />
+        <material name="Yellow">
+          <color rgba="1 1 0 1" />
         </material>
       </visual>
       <collision>
@@ -40,10 +40,10 @@
     <gazebo reference="${parent}_${lr}_wheel">
       <mu1 value="1.0"/>
       <mu2 value="1.0"/>
-      <kp  value="10000000.0" />
-      <kd  value="1.0" />
+      <kp  value="0.0" />
+      <kd  value="0.0" />
       <fdir1 value="1 0 0"/>
-      <material>Gazebo/Blue</material>
+      <material>Gazebo/Yellow</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
@@ -58,8 +58,8 @@
               rpy="0 0 0" />
       <axis xyz="0 1 0"
             rpy="0 0 0" />
-      <limit effort="100"
-             velocity="100"/>
+      <limit effort="10"
+             velocity="2"/>
       <joint_properties damping="0.0"
                         friction="0.0"/>
     </joint>
