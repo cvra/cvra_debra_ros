@@ -4,7 +4,10 @@
   <arg name="gui" default="False" />
 
   <!-- urdf robot description loaded-->
-  <param name="robot_description" textfile="$(arg model)" />
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find debra_description)/urdf/debra.xacro'"
+  />
 
   <!-- Publish the joint positions as a sensor_msgs/JointState -->
   <param name="use_gui" value="$(arg gui)"/>

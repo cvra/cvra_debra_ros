@@ -15,7 +15,7 @@ roslaunch debra_description debra_rviz.launch
 When changing the model of Debra,
 you can regenerate the urdf file from the xacro file by running:
 ```sh
-rosrun xacro xacro.py debra.xacro > debra.urdf
+rosrun xacro xacro --inorder debra.xacro > debra.urdf
 ```
 Make sure you are in the correct tree `debra_descriptìon/urdf`
 
