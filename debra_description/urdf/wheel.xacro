@@ -16,9 +16,7 @@
         <geometry>
           <mesh filename="package://debra_description/meshes/wheel.stl" />
         </geometry>
-        <material name="Yellow">
-          <color rgba="1 1 0 1" />
-        </material>
+        <material name="Yellow"/>
       </visual>
       <collision>
         <origin xyz="0 0 0"
