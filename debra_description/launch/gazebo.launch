@@ -8,13 +8,9 @@
     command="$(find xacro)/xacro --inorder $(find debra_description)/urdf/debra.xacro"
   />
 
-  <include file="$(find gazebo_ros)launch/empty_world.launch">
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
-  </include>
+  <include
+    file="$(find debra_description)/launch/eurobot2015.launch"
+  />
 
   <node
     name="tf_footprint_base"
@@ -43,7 +39,7 @@
     name="spawn_urdf"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-param debra_urdf_description -urdf -model debra"
+    args="-param debra_urdf_description -urdf -x 0.5 -y -1 -z 0.25 -model debra"
     respawn="false"
     output="screen"
   />
