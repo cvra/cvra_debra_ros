@@ -3,21 +3,16 @@ Debra description
 ROS package containing description files of Debra
 
 
-Usage
------
-To view the robot model in rviz, run one of the following:
+# Usage
+To view the robot model in rviz, run:
 ```sh
-roslaunch debra_description debra_display.launch
-roslaunch debra_description debra_rviz.launch
+roslaunch debra_description display.launch
 ```
 
-### Updating the model
-When changing the model of Debra,
-you can regenerate the urdf file from the xacro file by running:
+To launch the simulation of the robot on the Eurobot table with rviz, run:
 ```sh
-rosrun xacro xacro --inorder debra.xacro > debra.urdf
+roslaunch debra_description gazebo.launch
 ```
-Make sure you are in the correct tree `debra_descriptìon/urdf`
 
 ### Urdf parsing & visualisation tools
 You can parse the urdf file by running:
@@ -31,16 +26,9 @@ robot name is: debra
 ---------- Successfully Parsed XML ---------------
 root Link: base_footprint has 1 child(ren)
     child(1):  base_link
-        child(1):  base_link_left_wheel
-        child(2):  base_link_right_wheel
-        child(3):  body
-            child(1):  left_arm_slider
-                child(1):  left_arm_arm
-                    child(1):  left_arm_forearm
-            child(2):  right_arm_slider
-                child(1):  right_arm_arm
-                    child(1):  right_arm_forearm
-            child(3):  hokuyo_link
+        child(1):  laser
+        child(2):  base_link_left_wheel
+        child(3):  base_link_right_wheel
 ```
 
 You can also plot a graph tree of the robot's structure by running:
@@ -61,8 +49,3 @@ If you don't have these packages installed, install them using:
 ```sh
 rosdep install robot_state_publisher urdf xacro
 ```
-
-To do
------
-Fix issue #1: `rviz` fails to show the robot correctly when `roscore` is
-running in parallel
