@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+import math
+import rospy
+from sensor_msgs.msg import JointState
+
+def joint_publish():
+    rate = rospy.Rate(10)
+
+    left = 0.0
+    right = 0.0
+    inc = 0.005
+
+    while not rospy.is_shutdown():
+        joint_state = JointState()
+
+        joint_state.header.stamp = rospy.get_rostime()
+        joint_state.name.append("base_footprint_joint")
+        joint_state.position.append(0.0)
+        joint_state.name.append("base_link_right_wheel_joint")
+        joint_state.position.append(right)
+        joint_state.name.append("base_link_left_wheel_joint")
+        joint_state.position.append(left)
+
+        pub.publish(joint_state)
+        # rospy.loginfo(rospy.get_caller_id() + ' published')
+
+        # left += inc
+        # right -= inc
+
+        # if left > math.pi:
+        #     left = - math.pi
+        # if right < - math.pi:
+        #     right = math.pi
+
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        rospy.init_node('joint_publisher')
+        pub = rospy.Publisher('joint_states', JointState, queue_size=1)
+        joint_publish()
+    except rospy.ROSInterruptException:
+        pass
