@@ -1,29 +1,14 @@
 <launch>
-  <!-- Arguments from command line -->
-  <arg name="model" default="$(find debra_description)/urdf/debra.urdf"/>
-  <arg name="gui" default="False" />
+  <arg name="rviz_config" default="$(find debra_description)/launch/urdf_view.rviz" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find debra_description)/urdf/debra.xacro"/>
 
-  <!-- urdf robot description loaded-->
-  <param
-    name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find debra_description)/urdf/debra.xacro'"
+  <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 base_link base_footprint 40"
   />
+  <node name="joint_publisher" pkg="debra_description" type="joint_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
-  <!-- Publish the joint positions as a sensor_msgs/JointState -->
-  <param name="use_gui" value="$(arg gui)"/>
-  <node name="joint_state_publisher"
-        pkg="joint_state_publisher"
-        type="joint_state_publisher" />
-
-  <!-- Publish the frames to TF -->
-  <node name="robot_state_publisher"
-        pkg="robot_state_publisher"
-        type="state_publisher" />
-
-  <!-- Robot visualization -->
-  <node name="rviz"
-        pkg="rviz"
-        type="rviz"
-        args="-d $(find urdf_tutorial)/urdf.rviz"
-        required="true" />
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(arg rviz_config)"
+  />
 </launch>
