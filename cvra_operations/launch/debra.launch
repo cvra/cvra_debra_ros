@@ -1,10 +1,10 @@
 <launch>
   <!-- Initialise parameter server -->
   <rosparam command="load"
-            file="$(find cvra_operations)/common_param.yaml"
+            file="$(find cvra_operations)/params/common.yaml"
             ns="debra"/>
   <rosparam command="load"
-            file="$(find cvra_operations)/debra_param.yaml"
+            file="$(find cvra_operations)/params/debra.yaml"
             ns="debra"/>
 
   <!-- Initiate communication with master board -->
@@ -12,28 +12,8 @@
     <arg name="robot_ns" value="debra"/>
   </include>
 
-  <!-- Setup communication with beacons -->
-  <include file="$(find beacons_interface)/launch/beacons_interface.launch">
-    <arg name="robot_ns" value="debra"/>
-  </include>
-
-  <!-- Setup communication with beacons -->
-  <include file="$(find beacons_interface)/launch/ennemy_position_publisher.launch">
-    <arg name="robot_ns" value="debra"/>
-  </include>
-
-  <!-- Setup base motion planner server -->
-  <include file="$(find molly_base_motion_planner)/launch/molly_base_motion_planner_server.launch">
-    <arg name="robot_ns" value="debra"/>
-  </include>
-
   <!-- Start publishing Lidar Sick Tim561 measurements -->
   <include file="$(find sick_tim)/launch/sick_tim561_2050101.launch">
-    <arg name="robot_ns" value="debra"/>
-  </include>
-
-  <!-- Stream Logitech C310 webcam raw video footage -->
-  <include file="$(find webcam_stream)/launch/raw_stream.launch">
     <arg name="robot_ns" value="debra"/>
   </include>
 </launch>
