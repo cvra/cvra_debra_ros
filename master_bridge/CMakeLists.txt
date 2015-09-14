@@ -5,7 +5,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  cvra_msgs
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime)
