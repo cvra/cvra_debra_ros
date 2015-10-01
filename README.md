@@ -29,6 +29,36 @@ source devel/setup.bash
 ```
 
 
+# Build Docker image
+
+To run the dev setup, a Docker container is provided under the **docker_cvra_dev**.
+You can build it:
+```bash
+cd ~/catkin_ws/src/roscvra
+docker build -t cvra-dev docker_cvra_dev/
+```
+
+Then you can see the image has been added in your docker images, run `docker ps`.
+To run the dev setup:
+```bash
+docker run -it \
+       --user=$USER \
+       --env="DISPLAY" \
+       --workdir="/home/$USER" \
+       --volume="/home/$USER:/home/$USER" \
+       --volume="/etc/group:/etc/group:ro" \
+       --volume="/etc/passwd:/etc/passwd:ro" \
+       --volume="/etc/shadow:/etc/shadow:ro" \
+       --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+       --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+       --env="QT_X11_NO_MITSHM=1" \
+       cvra-dev \
+       bash
+```
+This will forward your home directory so you can use the catkin workspace where you developed directly inside the container.
+Now you should be able to run the simulation inside the docker container just created.
+
+
 # Simulation
 
 To launch the robot model in simulation run:
