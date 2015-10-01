@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+import argparse
+import rospy
+import tf
+from gazebo_msgs.msg import ModelState
+
+
+def set_robot_pose2d(robot_name, x, y, heading):
+    pub = rospy.Publisher('gazebo/set_model_state', ModelState, queue_size=1)
+    rospy.init_node('robot_pose2d', anonymous=True)
+    rate = rospy.Rate(10) # 10hz
+
+    robot_pose = ModelState()
+    robot_pose.model_name = robot_name
+    robot_pose.reference_frame = "world"
+
+    robot_pose.pose.position.x = x
+    robot_pose.pose.position.y = y
+    robot_pose.pose.position.z = 0.10
+
+    quaternion = tf.transformations.quaternion_from_euler(0, 0, heading)
+    robot_pose.pose.orientation.x = quaternion[0]
+    robot_pose.pose.orientation.y = quaternion[1]
+    robot_pose.pose.orientation.z = quaternion[2]
+    robot_pose.pose.orientation.w = quaternion[3]
+
+    robot_pose.twist.linear.x = 0
+    robot_pose.twist.linear.y = 0
+    robot_pose.twist.linear.z = 0
+
+    robot_pose.twist.angular.x = 0
+    robot_pose.twist.angular.y = 0
+    robot_pose.twist.angular.z = 0
+
+    # Ugly hack, One call doesn't seem to work, but two and more is ok
+    for i in range(2):
+        rospy.loginfo("Robot pose 2D: x={:.3f} y={:.3f} heading={:.3f}".format(x, y, heading))
+        pub.publish(robot_pose)
+        rate.sleep()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Set robot pose on table')
+    parser.add_argument('robot', type=str, help='Robot denomination')
+    parser.add_argument('x', type=float, help='x position coordinate')
+    parser.add_argument('y', type=float, help='y position coordinate')
+    parser.add_argument('heading', type=float, help='Heading')
+
+    args = parser.parse_args()
+
+    try:
+        set_robot_pose2d(args.robot, args.x, args.y, args.heading)
+    except rospy.ROSInterruptException:
+        pass

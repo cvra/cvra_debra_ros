@@ -5,6 +5,10 @@ find_package(catkin REQUIRED COMPONENTS
   robot_state_publisher
   urdf
   xacro
+  roscpp
+  sensor_msgs
+  nav_msgs
+  tf
 )
 
 catkin_package()

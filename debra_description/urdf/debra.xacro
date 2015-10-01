@@ -4,9 +4,8 @@
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find debra_description)/urdf/common_properties.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/body.xacro" />
   <xacro:include filename="$(find debra_description)/urdf/wheel.xacro" />
-  <xacro:include filename="$(find debra_description)/urdf/hokuyo.xacro" />
+  <xacro:include filename="$(find sick_tim)/urdf/sick_tim_56x.urdf.xacro" />
 
   <!-- BASE-FOOTPRINT -->
   <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
@@ -15,7 +14,7 @@
         <origin xyz="0 0 0"
                 rpy="0 0 0" />
         <geometry>
-            <box size="0.001 0.001 0.001" />
+          <box size="0.001 0.001 0.001" />
         </geometry>
     </visual>
   </link>
@@ -42,9 +41,7 @@
       <geometry>
         <mesh filename="package://debra_description/meshes/base_link.stl" />
       </geometry>
-      <material name="base_link_color">
-        <color rgba="0.898 0.918 0.929 1" />
-      </material>
+      <material name="White"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"
@@ -71,12 +68,6 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <!-- BODY -->
-  <body parent="base_link"
-        translateX="0"
-        translateY="0"
-        flipY="0" />
-
   <!-- WHEELs -->
   <wheel lr="right"
          parent="base_link"
@@ -89,35 +80,7 @@
          translateY="1"
          flipY="1" />
 
-  <!-- Hokuyo Laser -->
-  <hokuyo parent="body" />
-
-  <!-- Base controller -->
-  <gazebo>
-    <plugin name="differential_drive_controller"
-            filename="libgazebo_ros_diff_drive.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>${update_rate}</updateRate>
-      <leftJoint>base_link_right_wheel_joint</leftJoint>
-      <rightJoint>base_link_left_wheel_joint</rightJoint>
-      <wheelSeparation>${wheel_separation}</wheelSeparation>
-      <wheelDiameter>${wheel_radius * 2}</wheelDiameter>
-      <torque>20</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-    </plugin>
-    <plugin name="gazebo_ros_control"
-            filename="libgazebo_ros_control.so" />
-  </gazebo>
-
-  <!-- Arm controller -->
-  <gazebo>
-    <plugin name="gazebo_ros_control"
-            filename="libgazebo_ros_control.so">
-      <robotNamespace>/debra</robotNamespace>
-    </plugin>
-  </gazebo>
+  <!-- Sick Lidar Tim561 -->
+  <xacro:sick_tim561 name="laser" ros_topic="scan" parent="base_link" />
 
 </robot>

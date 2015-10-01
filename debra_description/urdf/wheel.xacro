@@ -16,9 +16,7 @@
         <geometry>
           <mesh filename="package://debra_description/meshes/wheel.stl" />
         </geometry>
-        <material name="wheel_color">
-          <color rgba="0.867 0.910 1 1" />
-        </material>
+        <material name="Yellow"/>
       </visual>
       <collision>
         <origin xyz="0 0 0"
@@ -40,10 +38,10 @@
     <gazebo reference="${parent}_${lr}_wheel">
       <mu1 value="1.0"/>
       <mu2 value="1.0"/>
-      <kp  value="10000000.0" />
-      <kd  value="1.0" />
+      <kp  value="0.0" />
+      <kd  value="0.0" />
       <fdir1 value="1 0 0"/>
-      <material>Gazebo/Blue</material>
+      <material>Gazebo/Yellow</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
@@ -58,23 +56,10 @@
               rpy="0 0 0" />
       <axis xyz="0 1 0"
             rpy="0 0 0" />
-      <limit effort="100"
-             velocity="100"/>
-      <joint_properties damping="0.0"
-                        friction="0.0"/>
+      <limit effort="10"
+             velocity="2"/>
+      <joint_properties damping="0.0" friction="0.0"/>
     </joint>
-
-    <!-- Transmission is important to link the joints and the controller -->
-    <transmission name="${parent}_${lr}_wheel_joint_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${parent}_${lr}_wheel_joint">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="${parent}_${lr}_wheel_joint_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>
 
   </xacro:macro>
 </robot>
