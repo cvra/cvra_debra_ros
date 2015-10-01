@@ -17,9 +17,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(odometry_publisher src/odometry_publisher.cpp)
-target_link_libraries(odometry_publisher ${catkin_LIBRARIES})
-
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
   PATTERN ".svn" EXCLUDE
